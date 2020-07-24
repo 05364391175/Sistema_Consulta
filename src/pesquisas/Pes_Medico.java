@@ -5,18 +5,31 @@
  */
 package pesquisas;
 
+import dao.MedicoDAO;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import mapeamento.Medico;
+
 /**
  *
  * @author Elias
  */
 public class Pes_Medico extends javax.swing.JDialog {
 
-    /**
-     * Creates new form Pes_Medico
-     */
+    Medico m = new Medico();
+
+    public Medico getM() {
+        return m;
+    }
+
+    public void setM(Medico m) {
+        this.m = m;
+    }
+    
     public Pes_Medico(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        preencherTabela();
     }
 
     /**
@@ -56,6 +69,11 @@ public class Pes_Medico extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -83,11 +101,28 @@ public class Pes_Medico extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int indice = jTable1.getSelectedRow();
+        m.setId_medico(Integer.parseInt(jTable1.getValueAt(indice, 0).toString()));
+        m.setNome(jTable1.getValueAt(indice, 1).toString());
+        m.setCrm(jTable1.getValueAt(indice, 2).toString());
+        this.dispose();
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    public void preencherTabela() {
+        MedicoDAO mdao = new MedicoDAO();
+        List<Medico> listaMedicos = mdao.listarTodos();
+        DefaultTableModel tableM = (DefaultTableModel) jTable1.getModel();
+        tableM.setRowCount(0);
+        for (Medico m : listaMedicos) {
+            tableM.addRow(new Object[]{m.getId_medico(), m.getNome(), m.getCrm()});
+        }
+    }
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

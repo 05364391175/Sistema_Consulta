@@ -16,16 +16,17 @@ public class Menu extends javax.swing.JFrame {
 
     /**
      * Creates new form Menu
+     *
      * @param f
      */
     public Menu(Funcionario f) {
         initComponents();
         jL_funcionario.setText(f.getNome());
         new Thread() {
-            public void run() {                
+            public void run() {
                 int x = 400;
                 int y = jLabel1.getLocation().y;
-                while(true) {
+                while (true) {
                     x--;
                     if (x < -500) {
                         x = getWidth();
@@ -39,8 +40,6 @@ public class Menu extends javax.swing.JFrame {
             }
         }.start();
     }
-
-  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -133,6 +132,11 @@ public class Menu extends javax.swing.JFrame {
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/consulta 01 - 32.png"))); // NOI18N
         jButton4.setText("Consultas");
         jButton4.setPreferredSize(new java.awt.Dimension(129, 41));
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/relatório01 - 32.png"))); // NOI18N
         jButton5.setText("Relatórios");
@@ -175,6 +179,11 @@ public class Menu extends javax.swing.JFrame {
         jMenu2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         jMenuItem4.setText("Agendar");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuItem5.setText("Cancelar");
@@ -281,8 +290,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       Form_funcionario ff = new Form_funcionario();
-       ff.setVisible(true);
+        Form_funcionario ff = new Form_funcionario();
+        ff.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -296,17 +305,26 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-       Form_funcionario ff = new Form_funcionario();
-       ff.setVisible(true);
+        Form_funcionario ff = new Form_funcionario();
+        ff.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-       Login l = new Login();
-       l.setVisible(true);
-       this.dispose();
+        Login l = new Login();
+        l.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
-    
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        Form_Consulta f = new Form_Consulta();
+        f.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Form_Consulta f = new Form_Consulta();
+        f.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

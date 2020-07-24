@@ -5,18 +5,32 @@
  */
 package pesquisas;
 
+import dao.PacienteDAO;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import mapeamento.Paciente;
+
 /**
  *
  * @author Elias
  */
 public class Pes_paciente extends javax.swing.JDialog {
+    
+    Paciente p = new Paciente();
 
-    /**
-     * Creates new form Pes_paciente
-     */
+    public Paciente getP() {
+        return p;
+    }
+
+    public void setP(Paciente p) {
+        this.p = p;
+    }
+    
     public Pes_paciente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        preencherTabela();
+       
     }
 
     /**
@@ -56,6 +70,11 @@ public class Pes_paciente extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -64,13 +83,13 @@ public class Pes_paciente extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 24, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,14 +98,32 @@ public class Pes_paciente extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+       int indice = jTable1.getSelectedRow();
+       p.setId_pacinte(Integer.parseInt(jTable1.getValueAt(indice, 0).toString()));
+       p.setNome(jTable1.getValueAt(indice, 1).toString());
+       p.setCpf(jTable1.getValueAt(indice, 2).toString());
+       this.dispose();
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    public void preencherTabela(){
+        PacienteDAO pdao = new PacienteDAO();
+        List<Paciente> lista = pdao.listarTodos();
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setRowCount(0);
+        for(Paciente p : lista){
+            modelo.addRow(new Object[]{p.getId_pacinte(), p.getNome(), p.getCpf()});
+        }
+    }
     /**
      * @param args the command line arguments
      */
