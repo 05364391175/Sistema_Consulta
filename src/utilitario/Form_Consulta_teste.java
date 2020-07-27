@@ -11,6 +11,7 @@ import mapeamento.Paciente;
 import pesquisas.Pes_Medico;
 import pesquisas.Pes_paciente;
 
+
 /**
  *
  * @author Elias
@@ -130,7 +131,13 @@ public class Form_Consulta_teste extends javax.swing.JFrame {
             }
         });
 
-        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("¤#,##0.--"))));
+        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        jFormattedTextField3.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jFormattedTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jFormattedTextField3KeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -247,6 +254,10 @@ public class Form_Consulta_teste extends javax.swing.JFrame {
        jT_idMedico.setText(String.valueOf(m.getId_medico()));
        jT_medico.setText(m.getNome());
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jFormattedTextField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jFormattedTextField3KeyPressed
+        
+    }//GEN-LAST:event_jFormattedTextField3KeyPressed
 
     /**
      * @param args the command line arguments

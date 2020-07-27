@@ -262,9 +262,13 @@
     <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField3">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-          <Format format="&#xa4;#,##0.--" subtype="-1" type="4"/>
+          <Format subtype="0" type="0"/>
         </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jFormattedTextField3KeyPressed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

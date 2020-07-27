@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import mapeamento.Consulta;
+import utilitario.Consulta;
 import mapeamento.Paciente;
 import utilitario.Conectar;
 

@@ -9,13 +9,13 @@ package mapeamento;
  *
  * @author Elias
  */
-public class Consulta {
+public class Consulta{
     private int id_consulta;
-    private String dataAtendimento;
-    private String horario;
-    private Paciente p;
-    private Medico m;
-    private Funcionario f;
+    private String data;
+    private String horas;
+    private Funcionario funcionario;
+    private Medico medico;
+    private Paciente paciente;
 
     public int getId_consulta() {
         return id_consulta;
@@ -25,44 +25,44 @@ public class Consulta {
         this.id_consulta = id_consulta;
     }
 
-    public String getDataAtendimento() {
-        return dataAtendimento;
+    public String getData() {
+        return data;
     }
 
-    public void setDataAtendimento(String dataAtendimento) {
-        this.dataAtendimento = dataAtendimento;
+    public void setData(String data) {
+        this.data = data;
     }
 
-    public String getHorario() {
-        return horario;
+    public String getHoras() {
+        return horas;
     }
 
-    public void setHorario(String horario) {
-        this.horario = horario;
+    public void setHoras(String horas) {
+        this.horas = horas;
     }
 
-    public Paciente getP() {
-        return p;
+    public Funcionario getFuncionario() {
+        return funcionario;
     }
 
-    public void setP(Paciente p) {
-        this.p = p;
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
 
-    public Medico getM() {
-        return m;
+    public Medico getMedico() {
+        return medico;
     }
 
-    public void setM(Medico m) {
-        this.m = m;
+    public void setMedico(Medico medico) {
+        this.medico = medico;
     }
 
-    public Funcionario getF() {
-        return f;
+    public Paciente getPaciente() {
+        return paciente;
     }
 
-    public void setF(Funcionario f) {
-        this.f = f;
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
     
 }

@@ -5,6 +5,7 @@
  */
 package formularios;
 
+import mapeamento.Funcionario;
 import mapeamento.Medico;
 import mapeamento.Paciente;
 import pesquisas.Pes_Medico;
@@ -16,9 +17,11 @@ import pesquisas.Pes_paciente;
  */
 public class Form_Consulta extends javax.swing.JFrame {
 
-   
-    public Form_Consulta() {
+   Funcionario funcionario;
+    public Form_Consulta(Funcionario f) {
         initComponents();
+        this.funcionario = f;
+        jL_nomeFuncionario.setText(f.getNome());
     }
 
     /**
@@ -46,6 +49,7 @@ public class Form_Consulta extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jL_nomeFuncionario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -128,6 +132,8 @@ public class Form_Consulta extends javax.swing.JFrame {
             }
         });
 
+        jL_nomeFuncionario.setText("jLabel6");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -167,7 +173,8 @@ public class Form_Consulta extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton1)
-                                    .addComponent(jButton2))))))
+                                    .addComponent(jButton2)))))
+                    .addComponent(jL_nomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -204,7 +211,9 @@ public class Form_Consulta extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(jL_nomeFuncionario)
+                .addContainerGap())
         );
 
         pack();
@@ -238,17 +247,7 @@ public class Form_Consulta extends javax.swing.JFrame {
        jT_medico.setText(m.getNome());
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Form_Consulta().setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -257,6 +256,7 @@ public class Form_Consulta extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField2;
+    private javax.swing.JLabel jL_nomeFuncionario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

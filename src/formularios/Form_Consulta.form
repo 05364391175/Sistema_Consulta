@@ -68,6 +68,7 @@
                           </Group>
                       </Group>
                   </Group>
+                  <Component id="jL_nomeFuncionario" alignment="0" min="-2" pref="339" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -118,7 +119,9 @@
                   <Component id="jButton4" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                   <Component id="jButton3" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="35" max="32767" attributes="0"/>
+              <EmptySpace pref="24" max="32767" attributes="0"/>
+              <Component id="jL_nomeFuncionario" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -250,6 +253,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jL_nomeFuncionario">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel6"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

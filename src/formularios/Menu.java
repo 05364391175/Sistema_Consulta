@@ -14,6 +14,8 @@ import mapeamento.Funcionario;
  */
 public class Menu extends javax.swing.JFrame {
 
+    
+    Funcionario funcionario;
     /**
      * Creates new form Menu
      *
@@ -22,6 +24,7 @@ public class Menu extends javax.swing.JFrame {
     public Menu(Funcionario f) {
         initComponents();
         jL_funcionario.setText(f.getNome());
+        funcionario = f;
         new Thread() {
             public void run() {
                 int x = 400;
@@ -316,12 +319,12 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        Form_Consulta f = new Form_Consulta();
+        Form_Consulta f = new Form_Consulta(funcionario);
         f.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        Form_Consulta f = new Form_Consulta();
+        Form_Consulta f = new Form_Consulta(funcionario);
         f.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
