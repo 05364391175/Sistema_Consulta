@@ -5,6 +5,8 @@
  */
 package formularios;
 
+import dao.ConsultaDAO;
+import mapeamento.Consulta;
 import mapeamento.Funcionario;
 import mapeamento.Medico;
 import mapeamento.Paciente;
@@ -18,6 +20,8 @@ import pesquisas.Pes_paciente;
 public class Form_Consulta extends javax.swing.JFrame {
 
    Funcionario funcionario;
+   Paciente p;
+   Medico m;
     public Form_Consulta(Funcionario f) {
         initComponents();
         this.funcionario = f;
@@ -36,9 +40,9 @@ public class Form_Consulta extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jF_data = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        jF_horas = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
         jT_idPaciente = new javax.swing.JTextField();
         jT_paciente = new javax.swing.JTextField();
@@ -79,7 +83,7 @@ public class Form_Consulta extends javax.swing.JFrame {
         jLabel2.setText("Data.:");
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            jF_data.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -87,7 +91,7 @@ public class Form_Consulta extends javax.swing.JFrame {
         jLabel3.setText("Hora.:");
 
         try {
-            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
+            jF_horas.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -124,6 +128,11 @@ public class Form_Consulta extends javax.swing.JFrame {
         });
 
         jButton3.setText("Salvar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Cancelar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -146,11 +155,11 @@ public class Form_Consulta extends javax.swing.JFrame {
                         .addGap(15, 15, 15)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jF_data, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jF_horas, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5)
@@ -186,14 +195,14 @@ public class Form_Consulta extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jF_data, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jT_idPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jF_horas, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -228,7 +237,7 @@ public class Form_Consulta extends javax.swing.JFrame {
             Pes_paciente pes_pac = new Pes_paciente(this, true);
             pes_pac.setVisible(true);
             
-            Paciente p = pes_pac.getP();
+            this.p = pes_pac.getP();
             jT_idPaciente.setText(""+p.getId_pacinte());
             jT_paciente.setText(p.getNome());
             
@@ -242,10 +251,22 @@ public class Form_Consulta extends javax.swing.JFrame {
        Pes_Medico pes_med = new Pes_Medico(this, true);
        pes_med.setVisible(true);
        
-       Medico m = pes_med.getM();
+       this.m = pes_med.getM();
        jT_idMedico.setText(String.valueOf(m.getId_medico()));
        jT_medico.setText(m.getNome());
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       Consulta c = new Consulta();
+       c.setData(jF_data.getText());
+       c.setHoras(jF_horas.getText());
+       c.setFuncionario(funcionario);
+       c.setMedico(this.m);
+       c.setPaciente(this.p);
+       
+       ConsultaDAO cdao = new ConsultaDAO();
+       cdao.cadastrar(c);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
    
 
@@ -254,8 +275,8 @@ public class Form_Consulta extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
+    private javax.swing.JFormattedTextField jF_data;
+    private javax.swing.JFormattedTextField jF_horas;
     private javax.swing.JLabel jL_nomeFuncionario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
