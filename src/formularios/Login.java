@@ -9,7 +9,6 @@ import dao.FuncionarioDAO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import mapeamento.Funcionario;
-import utilitario.Menu1;
 
 /**
  *
