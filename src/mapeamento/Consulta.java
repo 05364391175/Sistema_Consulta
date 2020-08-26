@@ -64,5 +64,7 @@ public class Consulta{
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
     }
+
+     
     
 }

@@ -65,5 +65,12 @@ public class Paciente {
     public void setDatanasc(String datanasc) {
         this.datanasc = datanasc;
     }
+
+    @Override
+    public String toString() {
+        return getNome(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
     
 }

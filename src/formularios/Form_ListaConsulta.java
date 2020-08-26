@@ -20,10 +20,12 @@ import mapeamento.Paciente;
 public class Form_ListaConsulta extends javax.swing.JFrame {
 
     Funcionario funcionario;
+
     public Form_ListaConsulta() {
         initComponents();
         preencherTabela();
     }
+
     public Form_ListaConsulta(Funcionario f) {
         initComponents();
         preencherTabela();
@@ -47,7 +49,10 @@ public class Form_ListaConsulta extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jF_data = new javax.swing.JFormattedTextField();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -114,10 +119,31 @@ public class Form_ListaConsulta extends javax.swing.JFrame {
         jLabel2.setText("Pesquisar por data.:");
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            jF_data.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+
+        jButton4.setText("Cadastrar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("...");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText("LISTAR TODAS");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,35 +152,45 @@ public class Form_ListaConsulta extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(1, 1, 1)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jF_data, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton6)
+                .addGap(31, 31, 31))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jF_data, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2))
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -163,43 +199,64 @@ public class Form_ListaConsulta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       int opcao = jT_consulta.getSelectedRow();
-       if(opcao >= 0){
-           Consulta c = new Consulta();
-           c.setId_consulta(Integer.parseInt(jT_consulta.getValueAt(opcao, 0).toString()));
-           c.setData(jT_consulta.getValueAt(opcao, 1).toString());
-           c.setHoras(jT_consulta.getValueAt(opcao, 2).toString());
-           ConsultaDAO cdao = new ConsultaDAO();
-           cdao.excluir(c);
-           preencherTabela();
-       }
+        int opcao = jT_consulta.getSelectedRow();
+        if(opcao >= 0){
+            Consulta c = new Consulta();
+            c.setId_consulta(Integer.parseInt(jT_consulta.getValueAt(opcao, 0).toString()));
+            ConsultaDAO cdao = new ConsultaDAO();
+            cdao.excluir(c);
+            preencherTabela();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int opcao = jT_consulta.getSelectedRow();
-       if(opcao >= 0){
-          ConsultaDAO cdao = new ConsultaDAO();
-          int id_consulta = Integer.parseInt(jT_consulta.getValueAt(opcao, 0).toString());
-          Consulta c = cdao.buscarID(id_consulta);
-           
-          Form_Consulta fm = new Form_Consulta(funcionario, c);
-          fm.setVisible(true);
-          preencherTabela();
-       }
+        if (opcao >= 0) {
+            ConsultaDAO cdao = new ConsultaDAO();
+            int id_consulta = Integer.parseInt(jT_consulta.getValueAt(opcao, 0).toString());
+            Consulta c = cdao.buscarID(id_consulta);
+
+            Form_Consulta fm = new Form_Consulta(funcionario, c);
+            fm.setVisible(true);
+            preencherTabela();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    public void preencherTabela(){
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Form_Consulta fc = new Form_Consulta(funcionario);
+        fc.setVisible(true);
+        preencherTabela();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        preencherTabela(jF_data.getText());
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        preencherTabela();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    public void preencherTabela() {
         ConsultaDAO cdao = new ConsultaDAO();
         List<Consulta> lista = cdao.listaTodas();
-        DefaultTableModel tabela = (DefaultTableModel)jT_consulta.getModel();
+        DefaultTableModel tabela = (DefaultTableModel) jT_consulta.getModel();
         tabela.setRowCount(0);
-        for(Consulta c : lista){
-            tabela.addRow(new Object[]{c.getId_consulta(),c.getData(),c.getHoras(),c.getMedico().getNome(),c.getPaciente().getNome(),c.getFuncionario().getNome()});
+        for (Consulta c : lista) {
+            tabela.addRow(new Object[]{c.getId_consulta(), c.getData(), c.getHoras(), c.getMedico().getNome(), c.getPaciente().getNome(), c.getFuncionario().getNome()});
         }
     }
-    
+    public void preencherTabela(String datapesquisa) {
+        ConsultaDAO cdao = new ConsultaDAO();
+        List<Consulta> lista = cdao.buscaData(datapesquisa);
+        DefaultTableModel tabela = (DefaultTableModel) jT_consulta.getModel();
+        tabela.setRowCount(0);
+        for (Consulta c : lista) {
+            tabela.addRow(new Object[]{c.getId_consulta(), c.getData(), c.getHoras(), c.getMedico().getNome(), c.getPaciente().getNome(), c.getFuncionario().getNome()});
+        }
+    }
+
     public static void main(String args[]) {
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Form_ListaConsulta().setVisible(true);
@@ -211,7 +268,10 @@ public class Form_ListaConsulta extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JFormattedTextField jF_data;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

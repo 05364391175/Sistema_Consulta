@@ -153,4 +153,45 @@ public class ConsultaDAO {
 
         return c;
     }
+    
+    
+    public List<Consulta> buscaData(String datapesquisa) {
+        Connection con = Conectar.getConectar();
+        List<Consulta> lista = new ArrayList<>();
+        String sql = "SELECT * FROM consulta "
+                + "INNER JOIN paciente  ON paciente.id_paciente = consulta.id_paciente"
+                + " INNER JOIN medico ON medico.id_medico = consulta.id_medico "
+                + "INNER JOIN funcionario ON funcionario.id_funcionario = consulta.id_funcionario WHERE consulta.dataAtendimento = ?";
+
+        try (PreparedStatement smt = con.prepareStatement(sql)) {
+            smt.setString(1, datapesquisa);
+            ResultSet resultado = smt.executeQuery();
+            while (resultado.next()) {
+                Consulta c = new Consulta();
+                c.setId_consulta(resultado.getInt("consulta.id_consulta"));
+                c.setData(resultado.getString("consulta.dataAtendimento"));
+                c.setHoras(resultado.getString("consulta.horario"));
+
+                Funcionario f = new Funcionario();
+                f.setId_funcionario(resultado.getInt("funcionario.id_funcionario"));
+                f.setNome(resultado.getString("funcionario.nome"));
+                c.setFuncionario(f);
+
+                Medico m = new Medico();
+                m.setId_medico(resultado.getInt("medico.id_medico"));
+                m.setNome(resultado.getString("medico.nome"));
+                c.setMedico(m);
+
+                Paciente p = new Paciente();
+                p.setId_pacinte(resultado.getInt("paciente.id_paciente"));
+                p.setNome(resultado.getString("paciente.nome"));
+                c.setPaciente(p);
+
+                lista.add(c);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar as consultas!");
+        }
+        return lista;
+    }
 }
